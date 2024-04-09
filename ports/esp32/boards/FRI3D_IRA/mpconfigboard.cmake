@@ -1,29 +1,7 @@
 set(SDKCONFIG_DEFAULTS
-    boards/sdkconfig.base
+    boards/FRI3D_IRA/sdkconfig.ira	
     ${SDKCONFIG_IDF_VERSION_SPECIFIC}
+    boards/sdkconfig.ble
 )
 
-if(MICROPY_BOARD_VARIANT STREQUAL "OTA")
-    set(SDKCONFIG_DEFAULTS
-        ${SDKCONFIG_DEFAULTS}
-        boards/ESP32_GENERIC/sdkconfig.ota
-    )
-
-    list(APPEND MICROPY_DEF_BOARD
-        MICROPY_HW_BOARD_NAME="Generic ESP32 module with OTA"
-    )
-endif()
-
-if(MICROPY_BOARD_VARIANT STREQUAL "SPIRAM")
-    set(SDKCONFIG_DEFAULTS
-        ${SDKCONFIG_DEFAULTS}
-	boards/FRI3D_IRA/sdkconfig.spiram
-    )
-
-    list(APPEND MICROPY_DEF_BOARD
-	 MICROPY_HW_BOARD_NAME="FRI3D IRA with SPIRAM"
-	 MICROPY_OPT_COMPUTED_GOTO=0
-	 MICROPY_PY_NETWORK_LAN=0
-    )
-endif()
 
